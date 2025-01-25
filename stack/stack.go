@@ -1,18 +1,30 @@
-package stack
+package main
 
 import "fmt"
 
-type Stack []int
+type Stack[T any] []T
 
-func (s *Stack) Push(num int) {
-	*s = append(*s, num)
+func (s *Stack[T]) Push(data T) {
+	*s = append(*s, data)
 }
 
-func (s *Stack) Pop() int {
+func (s *Stack[T]) Pop() T {
 	if len((*s)) == 0 {
 		panic("stack is empty")
 	}
 	popElement := (*s)[len(*s)-1]
 	*s = (*s)[:len(*s)-1]
 	return popElement
+}
+
+func (s *Stack[T]) Peek() T {
+	if len((*s)) == 0 {
+		panic("stack is empty")
+	}
+	return (*s)[len((*s))-1]
+}
+
+func main() {
+	var s Stack[int]
+	fmt.Printf("s.Peek(): %v\n", s.Peek())
 }
