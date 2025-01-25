@@ -7,6 +7,9 @@ func (q *Queue[T]) Enqueue(data T) {
 }
 
 func (q *Queue[T]) Dequeue() T {
+	if len((*q)) == 0 {
+		panic("queue is empty")
+	}
 	element := (*q)[0]
 	*q = (*q)[1:]
 	return element

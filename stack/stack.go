@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package stack
 
 type Stack[T any] []T
 
@@ -22,9 +20,4 @@ func (s *Stack[T]) Peek() T {
 		panic("stack is empty")
 	}
 	return (*s)[len((*s))-1]
-}
-
-func main() {
-	var s Stack[int]
-	fmt.Printf("s.Peek(): %v\n", s.Peek())
 }
