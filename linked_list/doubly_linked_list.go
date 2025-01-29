@@ -2,18 +2,18 @@ package linked_list
 
 import "fmt"
 
-type DoublyLinkedList struct {
-	head *dnode
+type DoublyLinkedList[T any] struct {
+	head *dnode[T]
 }
 
 // NewDoublyLinkedList creates a new DoublyLinkedList with head having data and next as nil
-func NewDoublyLinkedList() *DoublyLinkedList {
-	return &DoublyLinkedList{}
+func NewDoublyLinkedList[T any]() *DoublyLinkedList[T] {
+	return &DoublyLinkedList[T]{}
 }
 
 // Add adds a node to the linked list at last
-func (dll *DoublyLinkedList) Add(data any) bool {
-	newNode := &dnode{data, nil, nil}
+func (dll *DoublyLinkedList[T]) Add(data T) bool {
+	newNode := &dnode[T]{data, nil, nil}
 	trav := dll.head
 	if dll.head == nil {
 		dll.head = newNode
@@ -28,7 +28,7 @@ func (dll *DoublyLinkedList) Add(data any) bool {
 }
 
 // Display prints contents of the linked list
-func (dll *DoublyLinkedList) Display() {
+func (dll *DoublyLinkedList[T]) Display() {
 	if dll.head == nil {
 		fmt.Println("Doubly linked list is empty, please add at least one node")
 		return

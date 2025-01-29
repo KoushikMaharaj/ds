@@ -1,12 +1,12 @@
 package linked_list
 
-type dnode struct {
-	data any
-	next *dnode
-	prev *dnode
+type dnode[T any] struct {
+	data T
+	next *dnode[T]
+	prev *dnode[T]
 }
 
-type snode struct {
-	data any
-	next *snode
+type snode[T any] struct {
+	data T
+	next *snode[T]
 }

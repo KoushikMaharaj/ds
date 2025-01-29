@@ -2,17 +2,17 @@ package linked_list
 
 import "fmt"
 
-type SinglyCircularLinkedList struct {
-	head *snode
+type SinglyCircularLinkedList[T any] struct {
+	head *snode[T]
 }
 
 // NewSinglyCircularLinkedList creates a new SinglyLinkedList with head having data and next as nil
-func NewSinglyCircularLinkedList() *SinglyCircularLinkedList {
-	return &SinglyCircularLinkedList{}
+func NewSinglyCircularLinkedList[T any]() *SinglyCircularLinkedList[T] {
+	return &SinglyCircularLinkedList[T]{}
 }
 
-func (csll *SinglyCircularLinkedList) Add(data any) bool {
-	newNode := &snode{data: data, next: nil}
+func (csll *SinglyCircularLinkedList[T]) Add(data T) bool {
+	newNode := &snode[T]{data: data, next: nil}
 	if csll.head == nil {
 		csll.head = newNode
 		newNode.next = csll.head
@@ -27,7 +27,7 @@ func (csll *SinglyCircularLinkedList) Add(data any) bool {
 	return true
 }
 
-func (csll *SinglyCircularLinkedList) Display() {
+func (csll *SinglyCircularLinkedList[T]) Display() {
 	if csll.head == nil {
 		fmt.Println("Doubly linked list is empty, please add at least one node")
 		return
@@ -36,7 +36,7 @@ func (csll *SinglyCircularLinkedList) Display() {
 	for {
 		fmt.Println(trav.data)
 		trav = trav.next
-		if trav == csll.head{
+		if trav == csll.head {
 			break
 		}
 	}
